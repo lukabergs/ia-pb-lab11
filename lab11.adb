@@ -1,4 +1,4 @@
-package body Laboratorio11 is
+package body Lab11 is
 
    ------------------------------------
    -- AUTHOR: BERGARETXE LOPEZ, LUKA --
@@ -8,14 +8,14 @@ package body Laboratorio11 is
    -- Esta --
    ----------
 
-   function Esta (L: in T_Lista_Dinamica; N: in Integer) return Boolean is
-      r : Boolean := FALSE;
+   function Esta (L : in T_Lista_Dinamica; N : in Integer) return Boolean is
+      r : Boolean          := False;
       a : T_Lista_Dinamica := L;
    begin
       if a /= null then
          loop
             if N = a.Info then
-               r := TRUE;
+               r := True;
             end if;
             exit when r or a.Sig = null;
             a := a.Sig;
@@ -28,9 +28,10 @@ package body Laboratorio11 is
    -- Posicion --
    --------------
 
-   function Posicion (L: in T_Lista_Dinamica; N: in Integer) return Natural is
-      r : Natural := Integer'Last;
-      i : Natural := 1;
+   function Posicion (L : in T_Lista_Dinamica; N : in Integer) return Natural
+   is
+      r : Natural          := Integer'Last;
+      i : Natural          := 1;
       a : T_Lista_Dinamica := L;
    begin
       if a /= null then
@@ -50,19 +51,19 @@ package body Laboratorio11 is
    -- Media --
    -----------
 
-   function Media (L: in T_Lista_Dinamica) return Float is
+   function Media (L : in T_Lista_Dinamica) return Float is
       r : Float;
-      i : Positive := 1;
+      i : Positive         := 1;
       a : T_Lista_Dinamica := L;
    begin
       if a /= null then
-         r := Float(a.Info);
+         r := Float (a.Info);
          while a.Sig /= null loop
             a := a.Sig;
-            r := r + Float(a.Info);
+            r := r + Float (a.Info);
             i := i + 1;
          end loop;
-         r := r / Float(i);
+         r := r / Float (i);
       else
          r := Float'Last;
       end if;
@@ -73,11 +74,11 @@ package body Laboratorio11 is
    -- Prepend --
    -------------
 
-   procedure Prepend (L: in out T_Lista_Dinamica; Num: Integer) is
+   procedure Prepend (L : in out T_Lista_Dinamica; Num : Integer) is
       a : T_Lista_Dinamica;
    begin
       if L /= null then
-         a := new T_Nodo_Enteros'(L.all);
+         a     := new T_Nodo_Enteros'(L.all);
          L.all := (Num, a);
       else
          L := new T_Nodo_Enteros'(Num, null);
@@ -88,7 +89,7 @@ package body Laboratorio11 is
    -- Append --
    ------------
 
-   procedure Append (L: in out T_Lista_Dinamica; Num: Integer) is
+   procedure Append (L : in out T_Lista_Dinamica; Num : Integer) is
       a : T_Lista_Dinamica := L;
    begin
       if a /= null then
@@ -106,12 +107,10 @@ package body Laboratorio11 is
    ------------------------------
 
    procedure Insertar_Elemento_En_Pos
-     (L: in out T_Lista_Dinamica;
-      Num: in Integer;
-      Pos: in Integer)
+     (L : in out T_Lista_Dinamica; Num : in Integer; Pos : in Integer)
    is
       a, n : T_Lista_Dinamica;
-      i : Positive := 2;
+      i    : Positive := 2;
    begin
       if L = null then
          L := new T_Nodo_Enteros'(Num, null);
@@ -124,7 +123,7 @@ package body Laboratorio11 is
             a := a.Sig;
             i := i + 1;
          end loop;
-         n := new T_Nodo_Enteros'(Num, a.Sig);
+         n     := new T_Nodo_Enteros'(Num, a.Sig);
          a.Sig := n;
       end if;
    end Insertar_Elemento_En_Pos;
@@ -133,7 +132,7 @@ package body Laboratorio11 is
    -- Insertar --
    --------------
 
-   procedure Insertar (L: in out T_Lista_Dinamica; Num: in Integer) is
+   procedure Insertar (L : in out T_Lista_Dinamica; Num : in Integer) is
       a, n : T_Lista_Dinamica;
    begin
       if L = null then
@@ -146,7 +145,7 @@ package body Laboratorio11 is
          while a.Sig /= null and then Num > a.Sig.Info loop
             a := a.Sig;
          end loop;
-         n := new T_Nodo_Enteros'(Num, a.Sig);
+         n     := new T_Nodo_Enteros'(Num, a.Sig);
          a.Sig := n;
       end if;
    end Insertar;
@@ -155,7 +154,7 @@ package body Laboratorio11 is
    -- Borrar --
    ------------
 
-   procedure Borrar (L: in out T_Lista_Dinamica; Num: in Integer) is
+   procedure Borrar (L : in out T_Lista_Dinamica; Num : in Integer) is
       a : T_Lista_Dinamica;
    begin
       if L /= null then
@@ -177,7 +176,7 @@ package body Laboratorio11 is
    -- Concatenar --
    ----------------
 
-   procedure Concatenar (L1, L2: in out T_Lista_Dinamica) is
+   procedure Concatenar (L1, L2 : in out T_Lista_Dinamica) is
       a : T_Lista_Dinamica;
    begin
       if L1 = null then
@@ -195,19 +194,19 @@ package body Laboratorio11 is
    -- Invertir --
    --------------
 
-   procedure Invertir (L: in out T_Lista_Dinamica) is
+   procedure Invertir (L : in out T_Lista_Dinamica) is
       a1, a2 : T_Lista_Dinamica;
    begin
       if L /= null and then L.Sig /= null then
          a2 := L;
          loop
-            a1 := a2.Sig;
+            a1     := a2.Sig;
             a2.Sig := a1.Sig;
             a1.Sig := L;
-            L := a1;
+            L      := a1;
             exit when a2.Sig = null;
          end loop;
       end if;
    end Invertir;
 
-end Laboratorio11;
+end Lab11;
